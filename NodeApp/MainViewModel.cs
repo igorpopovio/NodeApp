@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Input;
 
 using NodeApp.Core;
 using NodeApp.Nodify;
@@ -12,8 +14,25 @@ namespace NodeApp
 
         public ObservableCollection<ConnectionViewModel> Connections { get; } = new();
 
+        public int Count { get; set; } = 3;
+
+        public ICommand AddNodeCommand { get; set; }
+
+        public void AddNode()
+        {
+            var node = new NodeViewModel { Title = $"Node {Count}", Location = new Point(200 * Count, 100) };
+            node.Input.Add(new ConnectorViewModel { Title = "In 1" });
+            node.Input.Add(new ConnectorViewModel { Title = "In 2" });
+            node.Output.Add(new ConnectorViewModel { Title = "Out 1" });
+            node.Output.Add(new ConnectorViewModel { Title = "Out 2" });
+            Nodes.Add(node);
+            Count++;
+        }
+
         public MainViewModel()
         {
+            AddNodeCommand = new Command(AddNode);
+
             var node1 = new NodeViewModel { Title = "Node 1", Location = new Point(100, 100) };
             node1.Input.Add(new ConnectorViewModel { Title = "In 1" });
             node1.Input.Add(new ConnectorViewModel { Title = "In 2" });

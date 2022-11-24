@@ -10,5 +10,18 @@
     <Window.DataContext>
         <app:MainViewModel />
     </Window.DataContext>
-    <nodify:NodifyEditor Connections="{Binding Connections}" ItemsSource="{Binding Nodes}" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Button
+            Grid.Row="0"
+            Command="{Binding AddNodeCommand}"
+            Content="Add node" />
+        <nodify:NodifyEditor
+            Grid.Row="1"
+            Connections="{Binding Connections}"
+            ItemsSource="{Binding Nodes}" />
+    </Grid>
 </Window>
