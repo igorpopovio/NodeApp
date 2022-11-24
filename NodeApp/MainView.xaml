@@ -24,12 +24,11 @@
                 Content="Add node by clicking" />
 
             <Button
-                x:Name="button"
                 Margin="10,0,0,0"
                 Padding="5"
                 Content="Add node by mouse over">
                 <behaviors:Interaction.Triggers>
-                    <behaviors:EventTrigger EventName="MouseEnter" SourceObject="{Binding ElementName=button}">
+                    <behaviors:EventTrigger EventName="MouseEnter">
                         <behaviors:InvokeCommandAction Command="{Binding AddNodeCommand}" />
                     </behaviors:EventTrigger>
                 </behaviors:Interaction.Triggers>
