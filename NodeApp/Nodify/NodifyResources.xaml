@@ -31,9 +31,14 @@
             OutputConnectorTemplate="{StaticResource DefaultOutputConnectorTemplate}" />
     </DataTemplate>
 
+    <Style x:Key="DefaultItemContainerStyle" TargetType="{x:Type nodify:ItemContainer}">
+        <Setter Property="Location" Value="{Binding Location}" />
+    </Style>
+
     <Style BasedOn="{StaticResource {x:Type nodify:NodifyEditor}}" TargetType="{x:Type nodify:NodifyEditor}">
         <Setter Property="ConnectionTemplate" Value="{StaticResource DefaultConnectionTemplate}" />
         <Setter Property="ItemTemplate" Value="{StaticResource DefaultItemTemplate}" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource DefaultItemContainerStyle}" />
     </Style>
 
 </ResourceDictionary>

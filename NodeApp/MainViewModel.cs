@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
+
 using NodeApp.Core;
 using NodeApp.Nodify;
 
@@ -12,14 +14,14 @@ namespace NodeApp
 
         public MainViewModel()
         {
-            var node1 = new NodeViewModel { Title = "Node 1" };
+            var node1 = new NodeViewModel { Title = "Node 1", Location = new Point(100, 100) };
             node1.Input.Add(new ConnectorViewModel { Title = "In 1" });
             node1.Input.Add(new ConnectorViewModel { Title = "In 2" });
             node1.Output.Add(new ConnectorViewModel { Title = "Out 1" });
 
             Nodes.Add(node1);
 
-            var node2 = new NodeViewModel { Title = "Node 2" };
+            var node2 = new NodeViewModel { Title = "Node 2", Location = new Point(500, 100) };
             node2.Input.Add(new ConnectorViewModel { Title = "In 1" });
             node2.Output.Add(new ConnectorViewModel { Title = "Out 1" });
             node2.Output.Add(new ConnectorViewModel { Title = "Out 2" });
