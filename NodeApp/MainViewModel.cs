@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -14,44 +15,33 @@ namespace NodeApp
 
         public ObservableCollection<ConnectionViewModel> Connections { get; } = new();
 
-        public int Count { get; set; } = 3;
-
         public ICommand AddNodeCommand { get; set; }
-
-        public void AddNode()
-        {
-            var node = new NodeViewModel { Title = $"Node {Count}", Location = new Point(200 * Count, 100) };
-            node.Input.Add(new ConnectorViewModel { Title = "In 1" });
-            node.Input.Add(new ConnectorViewModel { Title = "In 2" });
-            node.Output.Add(new ConnectorViewModel { Title = "Out 1" });
-            node.Output.Add(new ConnectorViewModel { Title = "Out 2" });
-            Nodes.Add(node);
-            Count++;
-        }
 
         public MainViewModel()
         {
             AddNodeCommand = new Command(AddNode);
 
-            var node1 = new NodeViewModel { Title = "Node 1", Location = new Point(100, 100) };
-            node1.Input.Add(new ConnectorViewModel { Title = "In 1" });
-            node1.Input.Add(new ConnectorViewModel { Title = "In 2" });
-            node1.Output.Add(new ConnectorViewModel { Title = "Out 1" });
-            node1.Output.Add(new ConnectorViewModel { Title = "Out 2" });
-            Nodes.Add(node1);
+            AddNode();
+            AddNode();
 
-            var node2 = new NodeViewModel { Title = "Node 2", Location = new Point(500, 100) };
-            node2.Input.Add(new ConnectorViewModel { Title = "In 1" });
-            node2.Input.Add(new ConnectorViewModel { Title = "In 2" });
-            node2.Output.Add(new ConnectorViewModel { Title = "Out 1" });
-            node2.Output.Add(new ConnectorViewModel { Title = "Out 2" });
-            Nodes.Add(node2);
+            var node1 = Nodes[0];
+            var node2 = Nodes[1];
 
             var connection1 = new ConnectionViewModel(source: node1.Output[0], target: node2.Input[0]);
             Connections.Add(connection1);
 
             var connection2 = new ConnectionViewModel(source: node1.Output[1], target: node2.Input[1]);
             Connections.Add(connection2);
+        }
+
+        public void AddNode()
+        {
+            var node = new NodeViewModel { Title = $"Node {Nodes.Count}", Location = new Point(200 * Nodes.Count, 100) };
+            node.Input.Add(new ConnectorViewModel { Title = "In 1" });
+            node.Input.Add(new ConnectorViewModel { Title = "In 2" });
+            node.Output.Add(new ConnectorViewModel { Title = "Out 1" });
+            node.Output.Add(new ConnectorViewModel { Title = "Out 2" });
+            Nodes.Add(node);
         }
     }
 }
