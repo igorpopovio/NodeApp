@@ -13,6 +13,7 @@ namespace NodeApp.Nodify
         public ObservableCollection<ConnectorViewModel> Input { get; set; } = new();
         public ObservableCollection<ConnectorViewModel> Output { get; set; } = new();
     }
+
     class ConnectorViewModel : ViewModel
     {
         public string Title { get; set; } = string.Empty;
