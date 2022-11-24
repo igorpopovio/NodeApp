@@ -8,6 +8,8 @@ namespace NodeApp
 
         public ObservableCollection<NodeViewModel> Nodes { get; set; } = new();
 
+        public ObservableCollection<ConnectionViewModel> Connections { get; } = new();
+
         public MainViewModel()
         {
             var node1 = new NodeViewModel { Title = "Node 1" };
@@ -23,6 +25,9 @@ namespace NodeApp
             node2.Output.Add(new ConnectorViewModel { Title = "Out 2" });
 
             Nodes.Add(node2);
+
+            var connection = new ConnectionViewModel(source: node1.Output[0], target: node2.Input[0]);
+            Connections.Add(connection);
         }
     }
 }

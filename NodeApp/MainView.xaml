@@ -10,7 +10,13 @@
     <Window.DataContext>
         <app:MainViewModel />
     </Window.DataContext>
-    <nodify:NodifyEditor ItemsSource="{Binding Nodes}">
+    <nodify:NodifyEditor Connections="{Binding Connections}" ItemsSource="{Binding Nodes}">
+        <nodify:NodifyEditor.ConnectionTemplate>
+            <DataTemplate DataType="{x:Type app:ConnectionViewModel}">
+                <nodify:LineConnection Source="{Binding Source.Anchor}" Target="{Binding Target.Anchor}" />
+            </DataTemplate>
+        </nodify:NodifyEditor.ConnectionTemplate>
+
         <nodify:NodifyEditor.ItemTemplate>
             <DataTemplate DataType="{x:Type app:NodeViewModel}">
                 <nodify:Node
@@ -20,17 +26,21 @@
 
                     <nodify:Node.InputConnectorTemplate>
                         <DataTemplate DataType="{x:Type app:ConnectorViewModel}">
-                            <nodify:NodeInput Header="{Binding Title}" />
+                            <nodify:NodeInput
+                                Anchor="{Binding Anchor, Mode=OneWayToSource}"
+                                Header="{Binding Title}"
+                                IsConnected="{Binding IsConnected}" />
                         </DataTemplate>
                     </nodify:Node.InputConnectorTemplate>
 
                     <nodify:Node.OutputConnectorTemplate>
                         <DataTemplate DataType="{x:Type app:ConnectorViewModel}">
-                            <nodify:NodeOutput Header="{Binding Title}" />
+                            <nodify:NodeOutput
+                                Anchor="{Binding Anchor, Mode=OneWayToSource}"
+                                Header="{Binding Title}"
+                                IsConnected="{Binding IsConnected}" />
                         </DataTemplate>
                     </nodify:Node.OutputConnectorTemplate>
-
-
                 </nodify:Node>
             </DataTemplate>
         </nodify:NodifyEditor.ItemTemplate>
