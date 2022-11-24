@@ -1,0 +1,39 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:nodify="https://miroiu.github.io/nodify"
+    xmlns:viewModel="clr-namespace:NodeApp.Nodify">
+
+    <DataTemplate x:Key="DefaultConnectionTemplate" DataType="{x:Type viewModel:ConnectionViewModel}">
+        <nodify:LineConnection Source="{Binding Source.Anchor}" Target="{Binding Target.Anchor}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="DefaultInputConnectorTemplate" DataType="{x:Type viewModel:ConnectorViewModel}">
+        <nodify:NodeInput
+            Anchor="{Binding Anchor, Mode=OneWayToSource}"
+            Header="{Binding Title}"
+            IsConnected="{Binding IsConnected}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="DefaultOutputConnectorTemplate" DataType="{x:Type viewModel:ConnectorViewModel}">
+        <nodify:NodeOutput
+            Anchor="{Binding Anchor, Mode=OneWayToSource}"
+            Header="{Binding Title}"
+            IsConnected="{Binding IsConnected}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="DefaultItemTemplate" DataType="{x:Type viewModel:NodeViewModel}">
+        <nodify:Node
+            Header="{Binding Title}"
+            Input="{Binding Input}"
+            InputConnectorTemplate="{StaticResource DefaultInputConnectorTemplate}"
+            Output="{Binding Output}"
+            OutputConnectorTemplate="{StaticResource DefaultOutputConnectorTemplate}" />
+    </DataTemplate>
+
+    <Style BasedOn="{StaticResource {x:Type nodify:NodifyEditor}}" TargetType="{x:Type nodify:NodifyEditor}">
+        <Setter Property="ConnectionTemplate" Value="{StaticResource DefaultConnectionTemplate}" />
+        <Setter Property="ItemTemplate" Value="{StaticResource DefaultItemTemplate}" />
+    </Style>
+
+</ResourceDictionary>
