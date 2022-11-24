@@ -17,13 +17,14 @@ class MainViewModel : ViewModel
 
     public MainViewModel()
     {
-        AddNodeCommand = new Command(AddNode);
+        AddNodeCommand = new Command(() => AddNode());
+        AddDefaultNodes();
+    }
 
-        AddNode();
-        AddNode();
-
-        var node1 = Nodes[0];
-        var node2 = Nodes[1];
+    private void AddDefaultNodes()
+    {
+        var node1 = AddNode();
+        var node2 = AddNode();
 
         var connection1 = new ConnectionViewModel(source: node1.Output[0], target: node2.Input[0]);
         Connections.Add(connection1);
@@ -32,13 +33,24 @@ class MainViewModel : ViewModel
         Connections.Add(connection2);
     }
 
-    public void AddNode()
+    public NodeViewModel AddNode()
     {
-        var node = new NodeViewModel { Title = $"Node {Nodes.Count}", Location = new Point(200 * Nodes.Count, 100) };
+        var xPosition = 200 * Nodes.Count;
+        var yPosition = 200;
+        var node = new NodeViewModel
+        {
+            Title = $"Node {Nodes.Count}",
+            Location = new Point(xPosition, yPosition),
+        };
+
         node.Input.Add(new ConnectorViewModel { Title = "In 1" });
         node.Input.Add(new ConnectorViewModel { Title = "In 2" });
+
         node.Output.Add(new ConnectorViewModel { Title = "Out 1" });
         node.Output.Add(new ConnectorViewModel { Title = "Out 2" });
+
         Nodes.Add(node);
+
+        return node;
     }
 }
