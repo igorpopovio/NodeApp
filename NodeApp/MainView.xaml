@@ -11,6 +11,11 @@
     <Window.DataContext>
         <app:MainViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="5" />
+        </Style>
+    </Window.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -18,15 +23,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Button
-                Padding="5"
-                Command="{Binding AddNodeCommand}"
-                Content="Add node by clicking" />
+            <Button Command="{Binding AddNodeCommand}" Content="Add node by clicking" />
 
-            <Button
-                Margin="10,0,0,0"
-                Padding="5"
-                Content="Add node by mouse over">
+            <Button Margin="10,0,0,0" Content="Add node by mouse over">
                 <behaviors:Interaction.Triggers>
                     <behaviors:EventTrigger EventName="MouseEnter">
                         <behaviors:InvokeCommandAction Command="{Binding AddNodeCommand}" />
