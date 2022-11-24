@@ -18,10 +18,10 @@ class MainViewModel : ViewModel
     public MainViewModel()
     {
         AddNodeCommand = new Command(() => AddNode());
-        AddDefaultNodes();
+        AddDefaultNodesWithConnections();
     }
 
-    private void AddDefaultNodes()
+    private void AddDefaultNodesWithConnections()
     {
         var node1 = AddNode();
         var node2 = AddNode();
