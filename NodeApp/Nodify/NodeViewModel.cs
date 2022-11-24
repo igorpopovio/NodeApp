@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using NodeApp.Core;
 
-namespace NodeApp
+namespace NodeApp.Nodify
 {
     class NodeViewModel : ViewModel
     {

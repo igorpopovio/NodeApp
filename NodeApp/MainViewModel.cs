@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
+using NodeApp.Core;
+using NodeApp.Nodify;
 
 namespace NodeApp
 {
     class MainViewModel : ViewModel
     {
-        public string Message { get; set; } = "Hello, world!";
-
         public ObservableCollection<NodeViewModel> Nodes { get; set; } = new();
 
         public ObservableCollection<ConnectionViewModel> Connections { get; } = new();

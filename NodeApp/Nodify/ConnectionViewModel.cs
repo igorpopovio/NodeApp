@@ -1,4 +1,6 @@
-﻿namespace NodeApp
+﻿using NodeApp.Core;
+
+namespace NodeApp.Nodify
 {
     class ConnectionViewModel : ViewModel
     {

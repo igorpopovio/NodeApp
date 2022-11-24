@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace NodeApp
+namespace NodeApp.Core
 {
     class ViewModel : INotifyPropertyChanged
     {

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using NodeApp.Core;
 
-namespace NodeApp
+namespace NodeApp.Nodify
 {
     class ConnectorViewModel : ViewModel
     {
