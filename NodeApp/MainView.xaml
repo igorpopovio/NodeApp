@@ -3,13 +3,18 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:app="clr-namespace:NodeApp"
+    xmlns:nodify="https://miroiu.github.io/nodify"
     Title="NodeApp"
     Width="800"
     Height="450">
     <Window.DataContext>
         <app:MainViewModel />
     </Window.DataContext>
-    <Grid>
-        <TextBlock Text="{Binding Message}" />
-    </Grid>
+    <nodify:NodifyEditor ItemsSource="{Binding Nodes}">
+        <nodify:NodifyEditor.ItemTemplate>
+            <DataTemplate DataType="{x:Type app:NodeViewModel}">
+                <nodify:Node Header="{Binding Title}" />
+            </DataTemplate>
+        </nodify:NodifyEditor.ItemTemplate>
+    </nodify:NodifyEditor>
 </Window>
