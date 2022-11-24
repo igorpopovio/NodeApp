@@ -5,9 +5,7 @@
     xmlns:app="clr-namespace:NodeApp"
     xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:nodify="https://miroiu.github.io/nodify"
-    Title="NodeApp"
-    Width="800"
-    Height="450">
+    Title="NodeApp">
     <Window.DataContext>
         <app:MainViewModel />
     </Window.DataContext>
